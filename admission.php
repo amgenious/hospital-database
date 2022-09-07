@@ -32,12 +32,13 @@ session_start();
                 <h1> AmGenious Hospital Database System</h1>
                 <br>
                 <p>Patient's Form</p>
+<!-- THIS CODE IS TO ADD PATIENT'S PERSONAL,MEDICAL,TEST,  DELETE AND COST RECORDS -->
                 <br>
                 <h2>TO ADD PATIENT</h2>
                 <br>
                 <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">PERSONAL INFORAMTION</button>
-  <form class="dropdown-menu p-4" method="post" action="add_patient.php">
+  <form class="dropdown-menu p-4" method="post">
   <p>Personal Information</p>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail2" class="form-label"></label>
@@ -63,9 +64,282 @@ session_start();
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
       <input name="Location" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Location" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" name="button1" value="button1" class="btn btn-primary">Submit</button>
   </form>
 </div>
+<br>
+<?php 
+if (array_key_exists('button1',$_POST)){
+	include("config.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $FullName = $_POST['FullName'];
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $Age = $_POST['Age'];
+        $Gender = $_POST['Gender'];
+        $Phone_No = $_POST['Phone_No'];
+        $Location = $_POST['Location'];
+ 
+		if(!empty($FullName) && !empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//save to database
+			$query = "insert into patients (FullName,PatientUniqueNumber,Age,Gender,Phone_No,Location) values ('$FullName','$PatientUniqueNumber','$Age','$Gender','$Phone_No','$Location')";
+
+			mysqli_query($conn, $query);
+
+            echo "Personal Information Submitted Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
+
+<br>
+<div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">MEDICAL INFORMATION</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Medical Information</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="" placeholder="Patient's Unique Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="DocUniquenNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Doctor's Unique Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Illness" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Illness" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Admitted" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Admitted to Ward. Yes/No" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="RoomNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Ward Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Tests" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Was tests conducted? Yes/No" required>
+    </div>
+    <button type="submit" name="button2" value="button2" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<br>
+<?php 
+if(array_key_exists('button2',$_POST)){
+ include("config.php");
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $DocUniqueNumber = $_POST['DocUniqueNumber'];
+        $Illness = $_POST['Illness'];
+        $Admitted = $_POST['Admitted'];
+        $RoomNumber = $_POST['RoomNumber'];
+        $Tests = $_POST['Tests'];
+ 
+		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//save to database
+			$query = "insert into `patients-doctors` (PatientUniqueNumber, DocUniqueNumber, Illness, Admitted, RoomNumber, Tests) values ('$PatientUniqueNumber','$DocUniqueNumber','$Illness','$Admitted','$RoomNumber','$Tests')";
+
+			mysqli_query($conn, $query);
+
+            echo "Medical Records Submitted Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
+<br>
+<div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">TEST RECORDS</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Test Records</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Patient's Unique Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="TestName" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Name of test" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Date" type="date" class="form-control" id="exampleDropdownFormPassword2" placeholder="Name of test" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Results" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Results. Either Positive/Negative" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Recommendations" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Recommedations" required>
+    </div>
+    <button type="submit" name="button3" value="button3" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<br>
+<?php 
+if(array_key_exists('button3',$_POST)){
+include("config.php");
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $TestName = $_POST['TestName'];
+        $Date = $_POST['Date'];
+        $Results = $_POST['Results'];
+        $Recommendations = $_POST['Recommendations'];
+ 
+		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//save to database
+			$query = "insert into `test` (PatientUniqueNumber, TestName, `Date`, Results, Recommendations) values ('$PatientUniqueNumber','$TestName','$Date','$Results','$Recommendations')";
+
+			mysqli_query($conn, $query);
+
+            echo "Test Records Submitted Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
+<br>
+<div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">COST RECORDS</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Cost Records</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Patient's Unique Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="FullName" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Patient's Full Name" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="TotalCost" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Patient's Total Cost" required>
+    </div>
+    <button type="submit" name="button4" value = "button4" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<br>
+<?php 
+if(array_key_exists('button4',$_POST)){
+include("config.php");
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $FullName = $_POST['FullName'];
+        $TotalCost = $_POST['TotalCost'];
+ 
+		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//save to database
+			$query = "insert into cost (PatientUniqueNumber, FullName, TotalCost) values ('$PatientUniqueNumber','$FullName','$TotalCost')";
+
+			mysqli_query($conn, $query);
+
+            echo "Cost Records Submitted Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
+<br>
+<div>
+
+
+<h2>TO EDIT PATIENT</h2>
+                <br>
+                <div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">PERSONAL INFORAMTION</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Personal Information</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="FullName" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="fullname" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Patient's Unique Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Age" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Age" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Gender" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Gender" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Phone_No" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Patient's Phone Number" required>
+    </div>
+    <div class="mb-3">
+      <label for="exampleDropdownFormPassword2" class="form-label"></label>
+      <input name="Location" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Location" required>
+    </div>
+    <button type="submit" name = "button5" value="button5"  class="btn btn-primary">Update</button>
+  </form>
+</div>
+<br>
+<?php 
+if(array_key_exists('button5',$_POST)){
+	include("config.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $FullName = $_POST['FullName'];
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $Age = $_POST['Age'];
+        $Gender = $_POST['Gender'];
+        $Phone_No = $_POST['Phone_No'];
+        $Location = $_POST['Location'];
+ 
+		if(!empty($FullName) && !empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//update database
+           $query= "UPDATE patients SET FullName='$FullName',PatientUniqueNumber='$PatientUniqueNumber',Age='$Age',Gender='$Gender',Phone_No='$Phone_No', Location='$Location' WHERE PatientUniqueNumber='$PatientUniqueNumber'";
+
+			mysqli_query($conn, $query);
+
+            echo "Records Updated Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
 <br>
 <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">MEDICAL INFORMATION</button>
@@ -95,11 +369,12 @@ session_start();
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
       <input name="Tests" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Was tests conducted? Yes/No" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="update" name="button6" value="button6" class="btn btn-primary">Update</button>
   </form>
 </div>
 <br>
 <?php 
+if(array_key_exists('button6',$_POST)){
  include("config.php");
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
@@ -114,22 +389,24 @@ session_start();
 		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
 		{
 
-			//save to database
-			$query = "insert into `patients-doctors` (PatientUniqueNumber, DocUniqueNumber, Illness, Admitted, RoomNumber, Tests) values ('$PatientUniqueNumber','$DocUniqueNumber','$Illness','$Admitted','$RoomNumber','$Tests')";
-
+			//update database
+      $query= "UPDATE `patients-doctors` SET PatientUniqueNumber='$PatientUniqueNumber',DocUniqueNumber='$DocUniqueNumber', Illness='$Illness', Admitted='$Admitted', RoomNumber='$RoomNumber', Tests='$Tests' WHERE PatientUniqueNumber='$PatientUniqueNumber'";
+			
 			mysqli_query($conn, $query);
 
-            echo "Medical Records Submitted Successfully";
+            echo "Medical Records Updated Successfully";
 			die;
 		}else
 		{
 			echo "Error in the codes";
 		}
 	}
+}
 ?>
+<br>
 <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">TEST RECORDS</button>
-  <form class="dropdown-menu p-4" method="post" action="test.php">
+  <form class="dropdown-menu p-4" method="post">
   <p>Test Records</p>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail2" class="form-label"></label>
@@ -151,9 +428,39 @@ session_start();
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
       <input name="Recommendations" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Recommedations" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="sumbmit" name="button7" value="button7" class="btn btn-primary">Update</button>
   </form>
 </div>
+<br>
+<?php 
+if(array_key_exists('button7',$_POST)){
+include("config.php");
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $TestName = $_POST['TestName'];
+        $Date = $_POST['Date&Time'];
+        $Results = $_POST['Results'];
+        $Recommendations = $_POST['Recommendations'];
+ 
+		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//save to database
+      $query= "UPDATE `test` SET PatientUniqueNumber='$PatientUniqueNumber',TestName='$TestName', Date='$Date', Results='$Results', Recommendations='$Recommendations' WHERE PatientUniqueNumber='$PatientUniqueNumber'";
+
+			mysqli_query($conn, $query);
+
+            echo "Test Records Updated Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
 <br>
 <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">COST RECORDS</button>
@@ -171,11 +478,82 @@ session_start();
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
       <input name="TotalCost" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Patient's Total Cost" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="update" name="button8" value="button8"class="btn btn-primary">Update</button>
   </form>
 </div>
 <br>
+<?php 
+if(array_key_exists('button8',$_POST)){
+include("config.php");
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//Getting Information
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+        $FullName = $_POST['FullName'];
+        $TotalCost = $_POST['TotalCost'];
+ 
+		if(!empty($PatientUniqueNumber) && !is_numeric($PatientUniqueNumber))
+		{
+
+			//update database
+      $query= "UPDATE `cost` SET PatientUniqueNumber='$PatientUniqueNumber',FullName='$FullName', TotalCost='$TotalCost' WHERE PatientUniqueNumber='$PatientUniqueNumber'";
+
+			mysqli_query($conn, $query);
+
+            echo "Cost Records Updated Successfully";
+			die;
+		}else
+		{
+			echo "Error in the codes";
+		}
+	}
+}
+?>
+<br>
+<h2>TO DELETE PATIENT AND RECORDS</h2>
+<br>
 <div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">DELETE PATIENT AND RECORDS</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Cost Records</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Patient's Unique Number" required>
+    </div>
+    <button type="submit" name="button9" value="button9" class="btn btn-primary">Delete</button>
+  </form>
+</div>
+<br>
+<?php 
+if(array_key_exists('button9', $_POST)){
+	include("config.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST"){
+        //Getting Unique Number
+        $PatientUniqueNumber = $_POST['PatientUniqueNumber'];
+
+        if(!empty($PatientUniqueNumber)){
+            //delete from database
+            $query = "delete from patients where PatientUniqueNumber = '$PatientUniqueNumber'";
+            $query1 = "delete from cost where PatientUniqueNumber = '$PatientUniqueNumber'";
+            $query2 = "delete from `patients-doctors` where PatientUniqueNumber = '$PatientUniqueNumber'";
+            $query3 = "delete from test where PatientUniqueNumber = '$PatientUniqueNumber'";
+
+            mysqli_query($conn,$query);
+            mysqli_query($conn,$query1);
+            mysqli_query($conn,$query2);
+            mysqli_query($conn,$query3);
+
+            echo "Deleted Successfully";
+			die;
+        }else{
+            echo "Delete not Successful";
+        }
+
+    }
+  }
+ ?>
 
 
                 <!-- <p>TO DELETE PATIENT</p>
