@@ -43,9 +43,9 @@ if(array_key_exists('button12',$_POST)){
            $result2 = $conn->query($query2);
            $result1 = $conn->query($query1);
             $result = $conn->query($query);
-            if ($result->num_rows > 0 or $result1->num_rows or $result2->num_rows or $result3->num_rows){
+            if ($result->num_rows > 0 and $result1->num_rows and $result2->num_rows and $result3->num_rows){
                 //Output the data
-                while($row = $result->fetch_assoc() or $row1 = $result1->fetch_assoc() or $row2 = $result2->fetch_assoc() or $row3 = $result3->fetch_assoc()){
+                while($row = $result->fetch_assoc() and $row1 = $result1->fetch_assoc() and $row2 = $result2->fetch_assoc() and $row3 = $result3->fetch_assoc()){
             echo "  Full Name: " . $row["FullName"].  "<br>";
             echo "  Unique Number: " . $row["PatientUniqueNumber"].  "<br>";
             echo "  Age: " . $row["Age"].  "<br>";
@@ -94,7 +94,7 @@ if(array_key_exists('button13',$_POST)){
 
             $result1 = $conn->query($query1);
             $result = $conn->query($query);
-            if ($result->num_rows > 0 or $result1->num_rows ){
+            if ($result->num_rows > 0 and $result1->num_rows ){
                 //Output the data
                 while($row = $result->fetch_assoc() or $row1 = $result1->fetch_assoc()){
             echo "  Full Name: " . $row["FullName"].  "<br>";

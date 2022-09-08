@@ -113,11 +113,11 @@ if (array_key_exists('button1',$_POST)){
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
-      <input name="DocUniquenNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Doctor's Unique Number" required>
+      <input name="DocUniqueNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Doctor's Unique Number" required>
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
-      <input name="Illness" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Illness" required>
+      <input name="Illness" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Illness" required>
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
@@ -180,7 +180,7 @@ if(array_key_exists('button2',$_POST)){
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
-      <input name="Date" type="date" class="form-control" id="exampleDropdownFormPassword2" placeholder="Name of test" required>
+      <input name="Date" type="date" class="form-control" id="exampleDropdownFormPassword2" placeholder="Date" required>
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
@@ -352,11 +352,11 @@ if(array_key_exists('button5',$_POST)){
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
-      <input name="DocUniquenNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Doctor's Unique Number" required>
+      <input name="DocUniqueNumber" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Doctor's Unique Number" required>
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
-      <input name="Illness" type="number" class="form-control" id="exampleDropdownFormPassword2" placeholder="Illness" required>
+      <input name="Illness" type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Illness" required>
     </div>
     <div class="mb-3">
       <label for="exampleDropdownFormPassword2" class="form-label"></label>
