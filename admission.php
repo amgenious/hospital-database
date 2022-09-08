@@ -24,12 +24,13 @@ session_start();
 </head>
 <body>
     <a href="index.php">Home</a>
+    <a href="doctor.php">Doctor</a>
     <div class="container">
         <div class="row">
         <div class="dropdown">
   
             <div class="col-md-12" style="text-align:center; display:flex; flex-direction:column; justify-content:space around;">
-                <h1> AmGenious Hospital Database System</h1>
+                <h1> A Hospital Database System</h1>
                 <br>
                 <p>Patient's Form</p>
 <!-- THIS CODE IS TO ADD PATIENT'S PERSONAL,MEDICAL,TEST,  DELETE AND COST RECORDS -->
@@ -464,7 +465,7 @@ include("config.php");
 <br>
 <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">COST RECORDS</button>
-  <form class="dropdown-menu p-4" method="post" action="cost.php">
+  <form class="dropdown-menu p-4" method="post">
   <p>Cost Records</p>
     <div class="mb-3">
       <label for="exampleDropdownFormEmail2" class="form-label"></label>
@@ -510,9 +511,9 @@ include("config.php");
 }
 ?>
 <br>
-<h2>TO DELETE PATIENT AND RECORDS</h2>
+<!-- <h2>TO DELETE PATIENT AND RECORDS</h2> -->
 <br>
-<div>
+<!-- <div>
 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">DELETE PATIENT AND RECORDS</button>
   <form class="dropdown-menu p-4" method="post">
   <p>Cost Records</p>
@@ -523,7 +524,7 @@ include("config.php");
     <button type="submit" name="button9" value="button9" class="btn btn-primary">Delete</button>
   </form>
 </div>
-<br>
+<br> -->
 <?php 
 if(array_key_exists('button9', $_POST)){
 	include("config.php");
@@ -553,62 +554,9 @@ if(array_key_exists('button9', $_POST)){
 
     }
   }
- ?>
-
-
-                <!-- <p>TO DELETE PATIENT</p>
-                <br>
-                <form method="post" action="delete_patient.php">
-                    <input  name="PatientUniqueNumber" type="text" placeholder="Patient's Unique Number" required>
-                    <button type="submit">Delete</button>
-                </form>
-                <br> -->
-                <!-- <br>
-                <p>TO EDIT PATIENT</p>
-                <form method="post" action="update_patient.php">
-                    <div style="display: flex; flex-direction:column;align-items: center;">
-                    <input name="FullName" type="text" placeholder="fullname" required>
-                    <input name="UniqueNumber" type="text" placeholder="Unique Number" required>
-                    <input name="Age" type="number" placeholder="age" required>
-                    <input name="Gender" type="text" placeholder="gender" required>
-                    <input name="Phone_No" type="text" placeholder="tel number" required>
-                    <input name="Location" type="text" placeholder="location" required>
-                    <button type="submit">Update</button>
-                </div>
-                </form>
-                <br>
-                <br>
-                <p>Doctors Form</p>
-                <br>
-                <p>TO ADD DOCTOR</p>
-                <form method="post" action="add_doctor.php">
-                    <div style="display: flex; flex-direction:column;align-items: center;">
-                    <input name="FullName" type="text" placeholder="fullname" required>
-                    <input name="UniqueNumber" type="text" placeholder="Unique Number" required>
-                    <input name="Gender" type="text" placeholder="gender" required>
-                    <input name="Phone_No" type="text" placeholder="tel number" required>
-                    <button type="submit">Submit</button>
-                </div>
-                </form>
-                <br>
-                <p>TO EDIT DOCTOR</p>
-                <form method="post" action="update_doctor.php">
-                    <div style="display: flex; flex-direction:column;align-items: center;">
-                    <input name="FullName" type="text" placeholder="fullname" required>
-                    <input name="UniqueNumber" type="text" placeholder="Unique Number" required>
-                    <input name="Gender" type="text" placeholder="gender" required>
-                    <input name="Phone_No" type="text" placeholder="tel number" required>
-                    <button type="submit">Update</button>
-                </div>
-                </form>
-                <br>
-                <p>TO DELETE DOCTOR</p>
-                <br>
-                <form method="post" action="delete_doctor.php">
-                    <input type="text" name="UniqueNumber" placeholder="Unique Number" required>
-                    <button type="submit">Delete</button>
-                </form> -->
-            </div>
+ ?> 
+           
+          </div>
         </div>
     </div>
     
