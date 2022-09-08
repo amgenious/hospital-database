@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
     <title>Hospital Patient Database</title>
 </head>
 <body>
@@ -12,12 +15,22 @@
 <a href="index.php">Home</a>
 <br>
 <br>
+<div style="text-align:center; display:flex; flex-direction:column; justify-content:space around;">
+<h1> A Hospital Database System</h1>
+<br>
 <p>TO REVEAL PATIENT'S DETAILS</p>
 <br>
-    <form method="post">
-        <input type="text" name="PatientUniqueNumber" placeholder="Patient's Unique Number" required>
-        <button name="button12" value="button12" type="submit">Reveal</button>
+<div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">PATIENT'S INFORMATION</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Information</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="PatientUniqueNumber" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Patient's Unique Number" required>
+    </div>
+        <button name="button12" value="button12" type="submit" class="btn btn-primary">Reveal</button>
     </form>
+</div>  
 <br> 
 <?php 
 session_start();
@@ -72,11 +85,17 @@ if(array_key_exists('button12',$_POST)){
 ?>   
 <p>TO REVEAL DOCTOR'S DETAILS</p>
 <br>
-    <form method="post">
-        <input type="text" name="DocUniqueNumber" placeholder=" Doctor's Unique Number" required>
-        <button name="button13" value="button13"type="submit">Reveal</button>
+<div>
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">DOCTOR'S INFORMATION</button>
+  <form class="dropdown-menu p-4" method="post">
+  <p>Doctor's Information</p>
+    <div class="mb-3">
+      <label for="exampleDropdownFormEmail2" class="form-label"></label>
+      <input name="DocUniqueNumber" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder=" Doctor's Unique Number" required>
+    </div>
+        <button name="button13" value="button13" type="submit" class="btn btn-primary">Reveal</button>
     </form>
-
+</div>
 <?php 
 if(array_key_exists('button13',$_POST)){
     include("config.php");
